@@ -19,7 +19,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\mancalasharp\mancalasharp.csproj" />
+        <ProjectReference Include="..\mancalasharp\mancalasharp.csproj"/>
     </ItemGroup>
 
 </Project>

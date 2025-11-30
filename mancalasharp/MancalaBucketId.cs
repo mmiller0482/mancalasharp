@@ -15,5 +15,5 @@ public enum MancalaBucketId
     Player1Pit5,
     Player2Pit5,
     Player1Pit6,
-    Player2Pit6,
+    Player2Pit6
 }
