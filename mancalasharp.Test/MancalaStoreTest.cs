@@ -1,3 +1,5 @@
+using mancalasharp.Board.Elements;
+
 namespace mancalasharp.Test;
 
 public class MancalaStoreTest

@@ -1,4 +1,4 @@
-namespace mancalasharp;
+namespace mancalasharp.Board.Elements;
 
 /// <summary>
 ///     A player's store of stones. May not be tampered with except through adding stones.

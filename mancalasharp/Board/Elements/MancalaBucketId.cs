@@ -1,4 +1,4 @@
-namespace mancalasharp;
+namespace mancalasharp.Board.Elements;
 
 public enum MancalaBucketId
 {
