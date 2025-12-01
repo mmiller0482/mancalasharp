@@ -65,6 +65,14 @@ public static class MancalaBoardBuilder
         var p2Store = new MancalaStore(MancalaBucketId.Player2Store);
         board.Setup_AddBucket(MancalaBucketId.Player2Store, p2Store);
 
+        
+        // setup bucket relations
+        
+        // Player 1
+        // pit1
+        p1Pit1.SetNextBucket(p1Pit2);
+        p1Pit1.SetCrossBucket(p2Pit6);
+        p1Pit1.SetMyStore(p1Store);
         return board;
     }
 }

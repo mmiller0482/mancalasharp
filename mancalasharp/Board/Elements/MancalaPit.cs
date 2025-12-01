@@ -11,4 +11,11 @@ public class MancalaPit : MancalaBucket
     public MancalaPit(MancalaBucketId id, int stoneCount) : base(id, stoneCount)
     {
     }
+    
+    public MancalaBucket CrossBucket { get; private set; }
+    
+    public MancalaBucket MyPit { get; private set; }
+    
+    public void SetCrossBucket(MancalaBucket crossBucket) => CrossBucket = crossBucket;
+    public void SetMyStore(MancalaBucket myPit) => MyPit = myPit;
 }
