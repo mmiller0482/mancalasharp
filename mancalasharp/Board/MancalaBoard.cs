@@ -11,6 +11,8 @@ public class MancalaBoard
     {
         _buckets.Add(id, bucket);
     }
+    
+    public MancalaBucket GetBucket(MancalaBucketId id) => _buckets[id];
 
     public void PrintBoard()
     {

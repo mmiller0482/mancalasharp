@@ -8,7 +8,7 @@ public abstract class MancalaBucket
         StoneCount = stoneCount;
     }
 
-    public int StoneCount { get; private set; }
+    public int StoneCount { get; protected set; }
     public MancalaBucketId Id { get; init; }
     public MancalaBucket NextBucket { get; private set; }
 

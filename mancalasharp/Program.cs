@@ -1,6 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using mancalasharp.Board;
+using mancalasharp;
 
-var board = MancalaBoardBuilder.Build();
-board.PrintBoard();
+MancalaGame game = new MancalaGame();
+game.Run();

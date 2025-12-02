@@ -1,3 +1,5 @@
+using System.Diagnostics;
+
 namespace mancalasharp.Board.Elements;
 
 public class MancalaPit : MancalaBucket
@@ -18,4 +20,18 @@ public class MancalaPit : MancalaBucket
     
     public void SetCrossBucket(MancalaBucket crossBucket) => CrossBucket = crossBucket;
     public void SetMyStore(MancalaBucket myPit) => MyPit = myPit;
+
+    public void Distribute()
+    {
+        int numStones = StoneCount;
+        var nextBucket = NextBucket;
+        while (numStones > 0)
+        {
+            nextBucket.AddStones(1);
+            nextBucket = nextBucket.NextBucket;
+            numStones--;
+        }
+
+        StoneCount = 0;
+    }
 }

@@ -73,6 +73,67 @@ public static class MancalaBoardBuilder
         p1Pit1.SetNextBucket(p1Pit2);
         p1Pit1.SetCrossBucket(p2Pit6);
         p1Pit1.SetMyStore(p1Store);
+        
+        // pit2
+        p1Pit2.SetNextBucket(p1Pit3);
+        p1Pit2.SetCrossBucket(p2Pit5);
+        p1Pit2.SetMyStore(p1Store);
+        
+        // pit3
+        p1Pit3.SetNextBucket(p1Pit4);
+        p1Pit3.SetCrossBucket(p2Pit4);
+        p1Pit3.SetMyStore(p1Store);
+        
+        // pit4
+        p1Pit4.SetNextBucket(p1Pit5);
+        p1Pit4.SetCrossBucket(p2Pit3);
+        p1Pit4.SetMyStore(p1Store);
+        
+        // pit5
+        p1Pit5.SetNextBucket(p1Pit6);
+        p1Pit5.SetCrossBucket(p2Pit2);
+        p1Pit5.SetMyStore(p1Store);
+        
+        // pit6
+        p1Pit6.SetNextBucket(p1Store);
+        p1Pit6.SetCrossBucket(p2Pit1);
+        p1Pit6.SetMyStore(p1Store);
+        
+        // Player 2
+        // pit1
+        p2Pit1.SetNextBucket(p2Pit2);
+        p2Pit1.SetCrossBucket(p1Pit6);
+        p2Pit1.SetMyStore(p2Store);
+        
+        // pit2
+        p2Pit2.SetNextBucket(p2Pit3);
+        p2Pit2.SetCrossBucket(p1Pit5);
+        p2Pit2.SetMyStore(p2Store);
+        
+        // pit3
+        p2Pit3.SetNextBucket(p2Pit4);
+        p2Pit3.SetCrossBucket(p1Pit4);
+        p2Pit3.SetMyStore(p2Store);
+        
+        // pit4
+        p2Pit4.SetNextBucket(p2Pit5);
+        p2Pit4.SetCrossBucket(p1Pit3);
+        p2Pit4.SetMyStore(p2Store);
+        
+        // pit5
+        p2Pit5.SetNextBucket(p2Pit6);
+        p2Pit5.SetCrossBucket(p1Pit2);
+        p2Pit5.SetMyStore(p2Store);
+        
+        // pit6
+        p2Pit6.SetNextBucket(p2Store);
+        p2Pit6.SetCrossBucket(p1Pit1);
+        p2Pit6.SetMyStore(p2Store);
+        
+        // stores
+        p1Store.SetNextBucket(p2Pit1);
+        p2Store.SetNextBucket(p1Pit1);
+        
         return board;
     }
 }
