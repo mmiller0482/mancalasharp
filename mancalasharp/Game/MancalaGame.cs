@@ -1,7 +1,7 @@
 using mancalasharp.Board;
 using mancalasharp.Board.Elements;
 
-namespace mancalasharp;
+namespace mancalasharp.Game;
 
 public class MancalaGame
 {
@@ -21,7 +21,7 @@ public class MancalaGame
         while (!_gameOver)
         {
             Board.PrintBoard();
-            Console.WriteLine($"Turn: {_turn}");
+            Console.WriteLine($"Turn: {_turn.ToDisplayString()}");
             var result = GetUserPit();
             if (result > 0 && result <= 6)
             {
@@ -59,12 +59,6 @@ public class MancalaGame
 
     private void SwitchTurn()
     {
-        _turn = _turn == PlayerTurn.Player1 ? PlayerTurn.Player2 : PlayerTurn.Player1;
+        _turn = _turn.Opposite();
     }
-}
-
-public enum PlayerTurn
-{
-    Player1,
-    Player2
 }

@@ -1,3 +1,5 @@
+using mancalasharp.Game;
+
 namespace mancalasharp.Board.Elements;
 
 public static class PitSelect
