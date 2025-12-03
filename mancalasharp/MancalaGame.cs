@@ -51,39 +51,8 @@ public class MancalaGame
 
     private void TogglePits(int selectedPit)
     {
-        MancalaBucketId pitId;
-        if (_turn == PlayerTurn.Player1)
-        {
-            if (selectedPit == 1)
-                pitId = MancalaBucketId.Player1Pit1;
-            else if (selectedPit == 2)
-                pitId = MancalaBucketId.Player1Pit2;
-            else if (selectedPit == 3)
-                pitId = MancalaBucketId.Player1Pit3;
-            else if (selectedPit == 4)
-                pitId = MancalaBucketId.Player1Pit4;
-            else if (selectedPit == 5)
-                pitId = MancalaBucketId.Player1Pit5;
-            else
-                pitId = MancalaBucketId.Player1Pit6;
-        }
-        else
-        {
-            if (selectedPit == 1)
-                pitId = MancalaBucketId.Player2Pit1;
-            else if (selectedPit == 2)
-                pitId = MancalaBucketId.Player2Pit2;
-            else if (selectedPit == 3)
-                pitId = MancalaBucketId.Player2Pit3;
-            else if (selectedPit == 4)
-                pitId = MancalaBucketId.Player2Pit4;
-            else if (selectedPit == 5)
-                pitId = MancalaBucketId.Player2Pit5;
-            else
-                pitId = MancalaBucketId.Player2Pit6;
-        }
-
-        var bucket = Board.GetBucket(pitId) as MancalaPit;
+        MancalaBucketId pitId = PitSelect.Get(_turn, selectedPit);
+        MancalaPit? bucket = Board.GetBucket(pitId) as MancalaPit;
 
         bucket.Distribute();
     }
