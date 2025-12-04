@@ -20,7 +20,7 @@ public class MancalaGame
     {
         while (!_gameOver)
         {
-            Board.PrintBoard();
+            MancalaBoardPrinter.Print(Board);
             Console.WriteLine($"Turn: {_turn.ToDisplayString()}");
             var result = GetUserPit();
             if (result > 0 && result <= 6)
