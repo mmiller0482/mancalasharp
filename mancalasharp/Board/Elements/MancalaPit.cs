@@ -1,4 +1,3 @@
-using System.Diagnostics;
 
 namespace mancalasharp.Board.Elements;
 
@@ -16,13 +15,13 @@ public class MancalaPit : MancalaBucket
     
     public MancalaBucket CrossBucket { get; private set; }
     
-    public MancalaBucket MyPit { get; private set; }
+    public MancalaBucket MyStore { get; private set; }
 
-    public void Setup_Relations(MancalaBucket nextBucket, MancalaBucket crossBucket, MancalaBucket myPit)
+    public void Setup_Relations(MancalaBucket nextBucket, MancalaBucket crossBucket, MancalaBucket myStore)
     {
         base.Setup_Relations(nextBucket);
         CrossBucket = crossBucket;
-        MyPit = myPit; 
+        MyStore = myStore; 
     }
     
     public void Distribute()
