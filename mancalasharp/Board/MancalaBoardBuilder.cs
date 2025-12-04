@@ -7,69 +7,33 @@ public static class MancalaBoardBuilder
     {
         var board = new MancalaBoard();
 
-        // P1
-        // pit1
-        var p1Pit1 = new MancalaPit(MancalaBucketId.Player1Pit1);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit1, p1Pit1);
+        // Player 1 pits
+        var p1Pits = new[]
+        {
+            AddPit(board, MancalaBucketId.Player1Pit1),
+            AddPit(board, MancalaBucketId.Player1Pit2),
+            AddPit(board, MancalaBucketId.Player1Pit3),
+            AddPit(board, MancalaBucketId.Player1Pit4),
+            AddPit(board, MancalaBucketId.Player1Pit5),
+            AddPit(board, MancalaBucketId.Player1Pit6),
+        };
 
-        // pit2
-        var p1Pit2 = new MancalaPit(MancalaBucketId.Player1Pit2);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit2, p1Pit2);
+        var p1Store = AddStore(board, MancalaBucketId.Player1Store);
 
-        // pit3
-        var p1Pit3 = new MancalaPit(MancalaBucketId.Player1Pit3);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit3, p1Pit3);
+        // Player 2 pits
+        var p2Pits = new[]
+        {
+            AddPit(board, MancalaBucketId.Player2Pit1),
+            AddPit(board, MancalaBucketId.Player2Pit2),
+            AddPit(board, MancalaBucketId.Player2Pit3),
+            AddPit(board, MancalaBucketId.Player2Pit4),
+            AddPit(board, MancalaBucketId.Player2Pit5),
+            AddPit(board, MancalaBucketId.Player2Pit6),
+        };
 
-        // pit4
-        var p1Pit4 = new MancalaPit(MancalaBucketId.Player1Pit4);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit4, p1Pit4);
+        var p2Store = AddStore(board, MancalaBucketId.Player2Store);
 
-        // pit5
-        var p1Pit5 = new MancalaPit(MancalaBucketId.Player1Pit5);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit5, p1Pit5);
-
-        // pit6
-        var p1Pit6 = new MancalaPit(MancalaBucketId.Player1Pit6);
-        board.Setup_AddBucket(MancalaBucketId.Player1Pit6, p1Pit6);
-
-        // store
-        var p1Store = new MancalaStore(MancalaBucketId.Player1Store);
-        board.Setup_AddBucket(MancalaBucketId.Player1Store, p1Store);
-
-        // P2
-        // pit1
-        var p2Pit1 = new MancalaPit(MancalaBucketId.Player2Pit1);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit1, p2Pit1);
-
-        // pit2
-        var p2Pit2 = new MancalaPit(MancalaBucketId.Player2Pit2);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit2, p2Pit2);
-
-        // pit3
-        var p2Pit3 = new MancalaPit(MancalaBucketId.Player2Pit3);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit3, p2Pit3);
-
-        // pit4
-        var p2Pit4 = new MancalaPit(MancalaBucketId.Player2Pit4);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit4, p2Pit4);
-
-        // pit5
-        var p2Pit5 = new MancalaPit(MancalaBucketId.Player2Pit5);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit5, p2Pit5);
-
-        // pit6
-        var p2Pit6 = new MancalaPit(MancalaBucketId.Player2Pit6);
-        board.Setup_AddBucket(MancalaBucketId.Player2Pit6, p2Pit6);
-
-        // store
-        var p2Store = new MancalaStore(MancalaBucketId.Player2Store);
-        board.Setup_AddBucket(MancalaBucketId.Player2Store, p2Store);
-
-        
-        var p1Pits = new[] { p1Pit1, p1Pit2, p1Pit3, p1Pit4, p1Pit5, p1Pit6 };
-        var p2Pits = new[] { p2Pit1, p2Pit2, p2Pit3, p2Pit4, p2Pit5, p2Pit6 };
-
-        // Player 1
+        // Player 1 relations
         for (int i = 0; i < 6; i++)
         {
             MancalaBucket next = i < 5 ? p1Pits[i + 1] : p1Store;
@@ -77,7 +41,7 @@ public static class MancalaBoardBuilder
             p1Pits[i].Setup_Relations(next, cross, p1Store);
         }
 
-        // Player 2
+        // Player 2 relations
         for (int i = 0; i < 6; i++)
         {
             MancalaBucket next = i < 5 ? p2Pits[i + 1] : p2Store;
@@ -88,7 +52,21 @@ public static class MancalaBoardBuilder
         // Stores
         p1Store.Setup_Relations(p2Pits[0]);
         p2Store.Setup_Relations(p1Pits[0]);
-        
+
         return board;
+    }
+    
+    private static MancalaPit AddPit(MancalaBoard board, MancalaBucketId id)
+    {
+        var pit = new MancalaPit(id);
+        board.Setup_AddBucket(id, pit);
+        return pit;
+    }
+
+    private static MancalaStore AddStore(MancalaBoard board, MancalaBucketId id)
+    {
+        var store = new MancalaStore(id);
+        board.Setup_AddBucket(id, store);
+        return store;
     }
 }
