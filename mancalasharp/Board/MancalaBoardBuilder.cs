@@ -66,49 +66,28 @@ public static class MancalaBoardBuilder
         board.Setup_AddBucket(MancalaBucketId.Player2Store, p2Store);
 
         
-        // setup bucket relations
-        
+        var p1Pits = new[] { p1Pit1, p1Pit2, p1Pit3, p1Pit4, p1Pit5, p1Pit6 };
+        var p2Pits = new[] { p2Pit1, p2Pit2, p2Pit3, p2Pit4, p2Pit5, p2Pit6 };
+
         // Player 1
-        // pit1
-        p1Pit1.Setup_Relations(p1Pit2, p2Pit6, p1Store);
-        
-        // pit2
-        p1Pit2.Setup_Relations(p1Pit3, p2Pit5, p1Store);
-        
-        // pit3
-        p1Pit3.Setup_Relations(p1Pit4, p2Pit4, p1Store);
-        
-        // pit4
-        p1Pit4.Setup_Relations(p1Pit5, p2Pit3, p1Store);
-        
-        // pit5
-        p1Pit5.Setup_Relations(p1Pit6, p2Pit2, p1Store);
-        
-        // pit6
-        p1Pit6.Setup_Relations(p1Store, p2Pit1, p1Store);
-        
+        for (int i = 0; i < 6; i++)
+        {
+            MancalaBucket next = i < 5 ? p1Pits[i + 1] : p1Store;
+            var cross = p2Pits[5 - i]; // 0↔5, 1↔4, etc.
+            p1Pits[i].Setup_Relations(next, cross, p1Store);
+        }
+
         // Player 2
-        // pit1
-        p2Pit1.Setup_Relations(p2Pit2, p1Pit6, p2Store);
-        
-        // pit2
-        p2Pit2.Setup_Relations(p2Pit3, p1Pit5, p2Store);
-        
-        // pit3
-        p2Pit3.Setup_Relations(p2Pit4, p1Pit4, p2Store);
-        
-        // pit4
-        p2Pit4.Setup_Relations(p2Pit5, p1Pit3, p2Store);
-        
-        // pit5
-        p2Pit5.Setup_Relations(p2Pit6, p1Pit2, p2Store);
-        
-        // pit6
-        p2Pit6.Setup_Relations(p2Store, p1Pit1, p2Store);
-        
-        // stores
-        p1Store.Setup_Relations(p2Pit1);
-        p2Store.Setup_Relations(p1Pit1);
+        for (int i = 0; i < 6; i++)
+        {
+            MancalaBucket next = i < 5 ? p2Pits[i + 1] : p2Store;
+            var cross = p1Pits[5 - i];
+            p2Pits[i].Setup_Relations(next, cross, p2Store);
+        }
+
+        // Stores
+        p1Store.Setup_Relations(p2Pits[0]);
+        p2Store.Setup_Relations(p1Pits[0]);
         
         return board;
     }
