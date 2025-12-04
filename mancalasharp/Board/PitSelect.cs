@@ -1,6 +1,7 @@
+using mancalasharp.Board.Elements;
 using mancalasharp.Game;
 
-namespace mancalasharp.Board.Elements;
+namespace mancalasharp.Board;
 
 public static class PitSelect
 {
