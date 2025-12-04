@@ -16,6 +16,9 @@ public abstract class MancalaBucket
     {
         StoneCount += numNewStones;
     }
-    
-    public void SetNextBucket(MancalaBucket nextBucket) => NextBucket = nextBucket;
+
+    public void Setup_Relations(MancalaBucket nextBucket)
+    {
+        NextBucket = nextBucket;
+    }
 }

@@ -17,10 +17,14 @@ public class MancalaPit : MancalaBucket
     public MancalaBucket CrossBucket { get; private set; }
     
     public MancalaBucket MyPit { get; private set; }
-    
-    public void SetCrossBucket(MancalaBucket crossBucket) => CrossBucket = crossBucket;
-    public void SetMyStore(MancalaBucket myPit) => MyPit = myPit;
 
+    public void Setup_Relations(MancalaBucket nextBucket, MancalaBucket crossBucket, MancalaBucket myPit)
+    {
+        base.Setup_Relations(nextBucket);
+        CrossBucket = crossBucket;
+        MyPit = myPit; 
+    }
+    
     public void Distribute()
     {
         int numStones = StoneCount;
