@@ -17,7 +17,7 @@ public static class MancalaBoardBuilder
             AddPit(board, MancalaBucketId.Player1Pit3, PlayerTurn.Player1),
             AddPit(board, MancalaBucketId.Player1Pit4, PlayerTurn.Player1),
             AddPit(board, MancalaBucketId.Player1Pit5, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit6, PlayerTurn.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit6, PlayerTurn.Player1)
         };
 
         var p1Store = AddStore(board, MancalaBucketId.Player1Store, PlayerTurn.Player1);
@@ -30,13 +30,13 @@ public static class MancalaBoardBuilder
             AddPit(board, MancalaBucketId.Player2Pit3, PlayerTurn.Player2),
             AddPit(board, MancalaBucketId.Player2Pit4, PlayerTurn.Player2),
             AddPit(board, MancalaBucketId.Player2Pit5, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit6, PlayerTurn.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit6, PlayerTurn.Player2)
         };
 
         var p2Store = AddStore(board, MancalaBucketId.Player2Store, PlayerTurn.Player2);
 
         // Player 1 relations
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
             MancalaBucket next = i < 5 ? p1Pits[i + 1] : p1Store;
             var cross = p2Pits[5 - i]; // 0↔5, 1↔4, etc.
@@ -44,7 +44,7 @@ public static class MancalaBoardBuilder
         }
 
         // Player 2 relations
-        for (int i = 0; i < 6; i++)
+        for (var i = 0; i < 6; i++)
         {
             MancalaBucket next = i < 5 ? p2Pits[i + 1] : p2Store;
             var cross = p1Pits[5 - i];
@@ -57,7 +57,7 @@ public static class MancalaBoardBuilder
 
         return board;
     }
-    
+
     private static MancalaPit AddPit(MancalaBoard board, MancalaBucketId id, PlayerTurn owner)
     {
         var pit = new MancalaPit(id, owner);

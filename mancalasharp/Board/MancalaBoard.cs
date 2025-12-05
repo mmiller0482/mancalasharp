@@ -2,7 +2,6 @@ using mancalasharp.Board.Elements;
 
 namespace mancalasharp.Board;
 
-
 public class MancalaBoard
 {
     private readonly Dictionary<MancalaBucketId, MancalaBucket> _buckets = new();
@@ -11,8 +10,11 @@ public class MancalaBoard
     {
         _buckets.Add(id, bucket);
     }
-    
-    public MancalaBucket GetBucket(MancalaBucketId id) => _buckets[id];
+
+    public MancalaBucket GetBucket(MancalaBucketId id)
+    {
+        return _buckets[id];
+    }
 
     public MancalaPit GetPit(MancalaBucketId id)
     {

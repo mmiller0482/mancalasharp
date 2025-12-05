@@ -1,5 +1,4 @@
 using mancalasharp.Board;
-using mancalasharp.Board.Elements;
 
 namespace mancalasharp.Game;
 
@@ -46,8 +45,8 @@ public class MancalaGame
 
     private void TogglePits(int selectedPit)
     {
-        MancalaBucketId pitId = PitSelect.Get(_turn, selectedPit);
-        MancalaPit pit = Board.GetPit(pitId);
+        var pitId = PitSelect.Get(_turn, selectedPit);
+        var pit = Board.GetPit(pitId);
 
         pit.Distribute();
     }

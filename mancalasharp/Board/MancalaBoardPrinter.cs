@@ -71,10 +71,10 @@ public static class MancalaBoardPrinter
 
     private static string ShortName(MancalaBucketId id)
     {
-        var s = id.ToString(); 
+        var s = id.ToString();
         s = s.Replace("Player", "P")
-             .Replace("Pit", "P")
-             .Replace("Store", "S");
+            .Replace("Pit", "P")
+            .Replace("Store", "S");
         return s;
     }
 }

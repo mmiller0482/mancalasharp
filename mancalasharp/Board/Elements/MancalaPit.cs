@@ -1,4 +1,3 @@
-
 using mancalasharp.Game;
 
 namespace mancalasharp.Board.Elements;
@@ -14,21 +13,21 @@ public class MancalaPit : MancalaBucket
     public MancalaPit(MancalaBucketId id, PlayerTurn owner, int stoneCount) : base(id, owner, stoneCount)
     {
     }
-    
+
     public MancalaBucket CrossBucket { get; private set; }
-    
+
     public MancalaBucket MyStore { get; private set; }
 
     public void Setup_Relations(MancalaBucket nextBucket, MancalaBucket crossBucket, MancalaBucket myStore)
     {
         base.Setup_Relations(nextBucket);
         CrossBucket = crossBucket;
-        MyStore = myStore; 
+        MyStore = myStore;
     }
-    
+
     public void Distribute()
     {
-        int numStones = StoneCount;
+        var numStones = StoneCount;
         var nextBucket = NextBucket;
         while (numStones > 0)
         {

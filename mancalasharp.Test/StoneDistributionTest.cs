@@ -3,11 +3,6 @@ using mancalasharp.Board.Elements;
 
 namespace mancalasharp.Test;
 
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using Xunit;
-
 public class MancalaDistributionTests
 {
     // Adjust this to match your enum values / order.
@@ -27,7 +22,7 @@ public class MancalaDistributionTests
         MancalaBucketId.Player2Pit4,
         MancalaBucketId.Player2Pit5,
         MancalaBucketId.Player2Pit6,
-        MancalaBucketId.Player2Store,
+        MancalaBucketId.Player2Store
     };
 
     [Fact]
@@ -38,16 +33,10 @@ public class MancalaDistributionTests
 
         // Assuming standard Kalah: 4 stones per pit, 0 per store.
         foreach (var id in RingOrder)
-        {
             if (IsPit(id))
-            {
                 Assert.Equal(4, counts[id]);
-            }
             else
-            {
                 Assert.Equal(0, counts[id]);
-            }
-        }
 
         Assert.Equal(4 * 12, counts.Values.Sum());
     }
@@ -101,7 +90,7 @@ public class MancalaDistributionTests
         var startIndex = Array.IndexOf(RingOrder, startPitId);
         Assert.True(startIndex >= 0, "Start pit must exist in ring order.");
 
-        for (int k = 1; k <= stonesToSow; k++)
+        for (var k = 1; k <= stonesToSow; k++)
         {
             var idx = (startIndex + k) % RingOrder.Length;
             var targetId = RingOrder[idx];
@@ -109,10 +98,7 @@ public class MancalaDistributionTests
         }
 
         // Compare each bucket
-        foreach (var id in RingOrder)
-        {
-            Assert.Equal(expectedCounts[id], finalCounts[id]);
-        }
+        foreach (var id in RingOrder) Assert.Equal(expectedCounts[id], finalCounts[id]);
     }
 
     // Helpers
@@ -121,12 +107,13 @@ public class MancalaDistributionTests
     {
         return RingOrder.ToDictionary(
             id => id,
-            id => board.GetBucket(id).StoneCount  // <-- adjust if your property is named differently
+            id => board.GetBucket(id).StoneCount // <-- adjust if your property is named differently
         );
     }
 
-    private static bool IsPit(MancalaBucketId id) =>
-        id is MancalaBucketId.Player1Pit1
+    private static bool IsPit(MancalaBucketId id)
+    {
+        return id is MancalaBucketId.Player1Pit1
             or MancalaBucketId.Player1Pit2
             or MancalaBucketId.Player1Pit3
             or MancalaBucketId.Player1Pit4
@@ -138,4 +125,5 @@ public class MancalaDistributionTests
             or MancalaBucketId.Player2Pit4
             or MancalaBucketId.Player2Pit5
             or MancalaBucketId.Player2Pit6;
+    }
 }
