@@ -1,15 +1,17 @@
 
+using mancalasharp.Game;
+
 namespace mancalasharp.Board.Elements;
 
 public class MancalaPit : MancalaBucket
 {
     private const int StoneCountDefault = 4;
 
-    public MancalaPit(MancalaBucketId id) : base(id, StoneCountDefault)
+    public MancalaPit(MancalaBucketId id, PlayerTurn owner) : base(id, owner, StoneCountDefault)
     {
     }
 
-    public MancalaPit(MancalaBucketId id, int stoneCount) : base(id, stoneCount)
+    public MancalaPit(MancalaBucketId id, PlayerTurn owner, int stoneCount) : base(id, owner, stoneCount)
     {
     }
     
@@ -36,5 +38,12 @@ public class MancalaPit : MancalaBucket
         }
 
         StoneCount = 0;
+    }
+
+    public int TakeAllStones()
+    {
+        var stones = StoneCount;
+        StoneCount = 0;
+        return stones;
     }
 }
