@@ -25,18 +25,34 @@ public class MancalaPit : MancalaBucket
         MyStore = myStore;
     }
 
-    public void Distribute()
+    public MancalaBucket Distribute(PlayerId currentPlayer)
     {
-        var numStones = StoneCount;
-        var nextBucket = NextBucket;
-        while (numStones > 0)
+        int stones = TakeAllStones();
+        if (stones == 0)
+            return this; // no-op, but board should treat starting from empty as invalid
+
+        MancalaBucket current = NextBucket;
+        MancalaBucket last = null;
+
+        while (stones > 0)
         {
-            nextBucket.AddStones(1);
-            nextBucket = nextBucket.NextBucket;
-            numStones--;
+            // Skip opponent's store
+            if (current is MancalaStore store && store.Owner != currentPlayer)
+            {
+                current = current.NextBucket;
+                continue;
+            }
+
+            // TODO: We should probably just remove AddStones for AddStone with no arg
+            current.AddStones(1); 
+            last = current;
+            stones--;
+
+            if (stones > 0)
+                current = current.NextBucket;
         }
 
-        StoneCount = 0;
+        return last!;
     }
 
     public int TakeAllStones()

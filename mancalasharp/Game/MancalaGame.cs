@@ -48,7 +48,7 @@ public class MancalaGame
         var pitId = PitSelect.Get(_currentTurn, selectedPit);
         var pit = Board.GetPit(pitId);
 
-        pit.Distribute();
+        pit.Distribute(_currentTurn);
     }
 
     private void SwitchTurn()

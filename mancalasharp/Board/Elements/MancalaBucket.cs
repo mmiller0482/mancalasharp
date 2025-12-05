@@ -16,7 +16,7 @@ public abstract class MancalaBucket
     public MancalaBucketId Id { get; init; }
     public MancalaBucket NextBucket { get; private set; }
 
-    // TODO: Do we actually need to support n number of new stones, or just singular? 
+    // TODO: We should probably just remove AddStones for AddStone with no arg
     public void AddStones(int numNewStones)
     {
         StoneCount += numNewStones;
