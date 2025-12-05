@@ -6,11 +6,11 @@ public class MancalaPit : MancalaBucket
 {
     private const int StoneCountDefault = 4;
 
-    public MancalaPit(MancalaBucketId id, PlayerTurn owner) : base(id, owner, StoneCountDefault)
+    public MancalaPit(MancalaBucketId id, PlayerId owner) : base(id, owner, StoneCountDefault)
     {
     }
 
-    public MancalaPit(MancalaBucketId id, PlayerTurn owner, int stoneCount) : base(id, owner, stoneCount)
+    public MancalaPit(MancalaBucketId id, PlayerId owner, int stoneCount) : base(id, owner, stoneCount)
     {
     }
 

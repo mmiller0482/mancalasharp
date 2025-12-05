@@ -25,12 +25,12 @@ public static class PitSelect
         MancalaBucketId.Player2Pit6
     ];
 
-    public static MancalaBucketId Get(PlayerTurn turn, int selectedPit)
+    public static MancalaBucketId Get(PlayerId id, int selectedPit)
     {
         if (selectedPit is < 1 or > 6)
             throw new ArgumentOutOfRangeException(nameof(selectedPit));
 
-        return turn == PlayerTurn.Player1
+        return id == PlayerId.Player1
             ? Player1Pits[selectedPit - 1]
             : Player2Pits[selectedPit - 1];
     }

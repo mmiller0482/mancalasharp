@@ -9,7 +9,7 @@ public class MancalaStoreTest
     public void MancalaStore_InstantiatedWith_0Stones()
     {
         // Arrange and Act
-        var myStore = new MancalaStore(MancalaBucketId.Player1Store, PlayerTurn.Player1);
+        var myStore = new MancalaStore(MancalaBucketId.Player1Store, PlayerId.Player1);
         // Assert
         Assert.Equal(0, myStore.StoneCount);
     }

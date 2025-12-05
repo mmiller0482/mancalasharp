@@ -6,7 +6,7 @@ public class MancalaGame
 {
     private bool _gameOver;
 
-    private PlayerTurn _turn = PlayerTurn.Player1;
+    private PlayerId _currentTurn = PlayerId.Player1;
 
     public MancalaBoard Board { get; } = MancalaBoardBuilder.Build();
 
@@ -15,7 +15,7 @@ public class MancalaGame
         while (!_gameOver)
         {
             MancalaBoardPrinter.Print(Board);
-            Console.WriteLine($"Turn: {_turn.ToDisplayString()}");
+            Console.WriteLine($"Turn: {_currentTurn.ToDisplayString()}");
             var result = GetUserPitRequest();
             if (result is > 0 and <= 6)
             {
@@ -32,7 +32,7 @@ public class MancalaGame
 
     private int GetUserPitRequest()
     {
-        Console.Write($"{_turn} Enter a number: ");
+        Console.Write($"{_currentTurn} Enter a number: ");
         var input = Console.ReadLine();
 
         if (int.TryParse(input, out var result))
@@ -45,7 +45,7 @@ public class MancalaGame
 
     private void TogglePits(int selectedPit)
     {
-        var pitId = PitSelect.Get(_turn, selectedPit);
+        var pitId = PitSelect.Get(_currentTurn, selectedPit);
         var pit = Board.GetPit(pitId);
 
         pit.Distribute();
@@ -53,6 +53,6 @@ public class MancalaGame
 
     private void SwitchTurn()
     {
-        _turn = _turn.Opposite();
+        _currentTurn = _currentTurn.Opposite();
     }
 }

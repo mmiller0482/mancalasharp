@@ -12,28 +12,28 @@ public static class MancalaBoardBuilder
         // Player 1 pits
         var p1Pits = new[]
         {
-            AddPit(board, MancalaBucketId.Player1Pit1, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit2, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit3, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit4, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit5, PlayerTurn.Player1),
-            AddPit(board, MancalaBucketId.Player1Pit6, PlayerTurn.Player1)
+            AddPit(board, MancalaBucketId.Player1Pit1, PlayerId.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit2, PlayerId.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit3, PlayerId.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit4, PlayerId.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit5, PlayerId.Player1),
+            AddPit(board, MancalaBucketId.Player1Pit6, PlayerId.Player1)
         };
 
-        var p1Store = AddStore(board, MancalaBucketId.Player1Store, PlayerTurn.Player1);
+        var p1Store = AddStore(board, MancalaBucketId.Player1Store, PlayerId.Player1);
 
         // Player 2 pits
         var p2Pits = new[]
         {
-            AddPit(board, MancalaBucketId.Player2Pit1, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit2, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit3, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit4, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit5, PlayerTurn.Player2),
-            AddPit(board, MancalaBucketId.Player2Pit6, PlayerTurn.Player2)
+            AddPit(board, MancalaBucketId.Player2Pit1, PlayerId.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit2, PlayerId.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit3, PlayerId.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit4, PlayerId.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit5, PlayerId.Player2),
+            AddPit(board, MancalaBucketId.Player2Pit6, PlayerId.Player2)
         };
 
-        var p2Store = AddStore(board, MancalaBucketId.Player2Store, PlayerTurn.Player2);
+        var p2Store = AddStore(board, MancalaBucketId.Player2Store, PlayerId.Player2);
 
         // Player 1 relations
         for (var i = 0; i < 6; i++)
@@ -58,14 +58,14 @@ public static class MancalaBoardBuilder
         return board;
     }
 
-    private static MancalaPit AddPit(MancalaBoard board, MancalaBucketId id, PlayerTurn owner)
+    private static MancalaPit AddPit(MancalaBoard board, MancalaBucketId id, PlayerId owner)
     {
         var pit = new MancalaPit(id, owner);
         board.Setup_AddBucket(id, pit);
         return pit;
     }
 
-    private static MancalaStore AddStore(MancalaBoard board, MancalaBucketId id, PlayerTurn owner)
+    private static MancalaStore AddStore(MancalaBoard board, MancalaBucketId id, PlayerId owner)
     {
         var store = new MancalaStore(id, owner);
         board.Setup_AddBucket(id, store);
