@@ -13,4 +13,20 @@ public class MancalaBoard
     }
     
     public MancalaBucket GetBucket(MancalaBucketId id) => _buckets[id];
+
+    public MancalaPit GetPit(MancalaBucketId id)
+    {
+        var bucket = _buckets[id];
+        if (bucket is not MancalaPit pit)
+            throw new InvalidOperationException($"Bucket {id} is not a Pit");
+        return pit;
+    }
+
+    public MancalaStore GetStore(MancalaBucketId id)
+    {
+        var bucket = _buckets[id];
+        if (bucket is not MancalaStore store)
+            throw new InvalidOperationException($"Bucket {id} is not a Store");
+        return store;
+    }
 }

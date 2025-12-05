@@ -9,12 +9,7 @@ public class MancalaGame
 
     private PlayerTurn _turn = PlayerTurn.Player1;
 
-    public MancalaGame()
-    {
-        Board = MancalaBoardBuilder.Build();
-    }
-
-    public MancalaBoard Board { get; }
+    public MancalaBoard Board { get; } = MancalaBoardBuilder.Build();
 
     public void Run()
     {
@@ -22,8 +17,8 @@ public class MancalaGame
         {
             MancalaBoardPrinter.Print(Board);
             Console.WriteLine($"Turn: {_turn.ToDisplayString()}");
-            var result = GetUserPit();
-            if (result > 0 && result <= 6)
+            var result = GetUserPitRequest();
+            if (result is > 0 and <= 6)
             {
                 // handle valid
                 TogglePits(result);
@@ -36,7 +31,7 @@ public class MancalaGame
         }
     }
 
-    private int GetUserPit()
+    private int GetUserPitRequest()
     {
         Console.Write($"{_turn} Enter a number: ");
         var input = Console.ReadLine();
@@ -52,9 +47,9 @@ public class MancalaGame
     private void TogglePits(int selectedPit)
     {
         MancalaBucketId pitId = PitSelect.Get(_turn, selectedPit);
-        MancalaPit? bucket = Board.GetBucket(pitId) as MancalaPit;
+        MancalaPit pit = Board.GetPit(pitId);
 
-        bucket.Distribute();
+        pit.Distribute();
     }
 
     private void SwitchTurn()

@@ -71,7 +71,7 @@ public class MancalaDistributionTests
         var board = MancalaBoardBuilder.Build();
         var initialCounts = GetStoneCounts(board);
 
-        var startPit = (MancalaPit)board.GetBucket(startPitId);
+        var startPit = board.GetPit(startPitId);
         var stonesToSow = initialCounts[startPitId];
 
         // Sanity: we should be starting from a pit, not a store
