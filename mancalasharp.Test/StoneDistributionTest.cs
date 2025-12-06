@@ -1,5 +1,6 @@
 using mancalasharp.Board;
 using mancalasharp.Board.Elements;
+using mancalasharp.Game;
 
 namespace mancalasharp.Test;
 
@@ -68,7 +69,7 @@ public class MancalaDistributionTests
         Assert.True(stonesToSow > 0);
 
         // Act
-        startPit.Distribute();
+        startPit.Distribute(startPitId.GetCorrespondingPlayerId());
 
         var finalCounts = GetStoneCounts(board);
 
@@ -126,4 +127,5 @@ public class MancalaDistributionTests
             or MancalaBucketId.Player2Pit5
             or MancalaBucketId.Player2Pit6;
     }
+    
 }
