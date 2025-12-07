@@ -1,4 +1,5 @@
 using mancalasharp.Board;
+using mancalasharp.Board.Elements;
 
 namespace mancalasharp.Game;
 
@@ -23,15 +24,16 @@ public class MancalaGame
     private void TakeTurn()
     {
         var result = GetUserPitRequest();
-        if (result == 0) 
+        if (result != 0)
         {
-            _gameOver = true;
+            // handle valid
+            MoveResult moveResult = MakePlayerMove(result);
+            if (moveResult.GameOver) _gameOver = true;
+            if (!moveResult.ExtraTurn) SwitchTurn();
         }
         else
         {
-            // handle valid
-            TogglePits(result);
-            SwitchTurn();
+            _gameOver = true;
         }
     }
 
@@ -64,12 +66,24 @@ public class MancalaGame
         }
     }
 
-    private void TogglePits(int selectedPit)
+    /// <summary>
+    /// Makes a move on the board for the current player, given the selected start pit (for that player)
+    /// </summary>
+    /// <param name="selectedPit">integer pit # from 1-6</param>
+    /// <returns>MoveResult --> Whether player should get extra turn, whether game is over</returns>
+    private MoveResult MakePlayerMove(int selectedPit)
     {
         var pitId = PitSelect.Get(_currentTurn, selectedPit);
         var pit = Board.GetPit(pitId);
 
-        pit.Distribute(_currentTurn);
+        MancalaBucket endBucket = pit.Distribute(_currentTurn);
+        
+        // How do we know if player gets an extra turn?
+        bool extraTurn = endBucket.StoneCount == 1 && endBucket.Owner == _currentTurn;
+
+        MoveResult moveResult = new MoveResult(){ExtraTurn = extraTurn, GameOver = false};
+
+        return moveResult;
     }
 
     private void SwitchTurn()
@@ -77,3 +91,11 @@ public class MancalaGame
         _currentTurn = _currentTurn.Opposite();
     }
 }
+
+public struct MoveResult
+{
+    public required  bool ExtraTurn { get; init; }
+    public required bool GameOver { get; init; }   
+}
+
+
