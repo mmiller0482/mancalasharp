@@ -16,31 +16,52 @@ public class MancalaGame
         {
             MancalaBoardPrinter.Print(Board);
             Console.WriteLine($"Turn: {_currentTurn.ToDisplayString()}");
-            var result = GetUserPitRequest();
-            if (result is > 0 and <= 6)
-            {
-                // handle valid
-                TogglePits(result);
-                SwitchTurn();
-            }
-            else
-            {
-                _gameOver = true;
-            }
+            TakeTurn();
         }
     }
 
+    private void TakeTurn()
+    {
+        var result = GetUserPitRequest();
+        if (result == 0) 
+        {
+            _gameOver = true;
+        }
+        else
+        {
+            // handle valid
+            TogglePits(result);
+            SwitchTurn();
+        }
+    }
+
+    /// <summary>
+    /// Get user input for pit selection. Will keep asking until valid input is given.
+    /// Returns 0 if user wishes to exit.
+    /// </summary>
+    /// <returns> user pit selection, or 0 for exit</returns>
     private int GetUserPitRequest()
     {
-        Console.Write($"{_currentTurn} Enter a number: ");
-        var input = Console.ReadLine();
+        while (true)
+        {
+            Console.Write($"{_currentTurn} Enter which pit to move stones from (1-6), or 0 to quit: ");
+            var input = Console.ReadLine();
 
-        if (int.TryParse(input, out var result))
+            if (!int.TryParse(input, out int result))
+            {
+                Console.WriteLine("That was not a valid integer. Try again!");
+                continue;
+            }
+
+            if (result is < 0 or > 6)
+            {
+                Console.WriteLine("Invalid pit number. Please enter 1–6, or 0 for exit.");
+                continue;
+            }
+
             Console.WriteLine($"You entered the number: {result}");
-        else
-            Console.WriteLine("That was not a valid integer.");
-
-        return result;
+            return result; // 0..6 only
+        }
     }
 
     private void TogglePits(int selectedPit)
