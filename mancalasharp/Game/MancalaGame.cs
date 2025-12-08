@@ -79,7 +79,7 @@ public class MancalaGame
         MancalaBucket endBucket = pit.Distribute(_currentTurn);
         
         // How do we know if player gets an extra turn?
-        bool extraTurn = endBucket.StoneCount == 1 && endBucket.Owner == _currentTurn;
+        bool extraTurn = endBucket is MancalaStore && endBucket.Owner == _currentTurn;
 
         MoveResult moveResult = new MoveResult(){ExtraTurn = extraTurn, GameOver = false};
 
