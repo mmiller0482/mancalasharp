@@ -24,11 +24,11 @@ public static class MancalaBucketIdExtensions
 {
     public static PlayerId GetCorrespondingPlayerId(this MancalaBucketId id)
     {
-        return id is MancalaBucketId.Player1Store 
-            or MancalaBucketId.Player1Pit1 
+        return id is MancalaBucketId.Player1Store
+            or MancalaBucketId.Player1Pit1
             or MancalaBucketId.Player1Pit2
-            or MancalaBucketId.Player1Pit3 
-            or MancalaBucketId.Player1Pit4 
+            or MancalaBucketId.Player1Pit3
+            or MancalaBucketId.Player1Pit4
             or MancalaBucketId.Player1Pit5
             or MancalaBucketId.Player1Pit6
             ? PlayerId.Player1

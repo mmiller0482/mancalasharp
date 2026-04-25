@@ -5,9 +5,8 @@ namespace mancalasharp.Game;
 
 public class MancalaGame
 {
-    private bool _gameOver;
-
     private PlayerId _currentTurn = PlayerId.Player1;
+    private bool _gameOver;
 
     public MancalaBoard Board { get; } = MancalaBoardBuilder.Build();
 
@@ -27,7 +26,7 @@ public class MancalaGame
         if (result != 0)
         {
             // handle valid
-            MoveResult moveResult = MakePlayerMove(result);
+            var moveResult = MakePlayerMove(result);
             if (moveResult.GameOver) _gameOver = true;
             if (!moveResult.ExtraTurn) SwitchTurn();
         }
@@ -38,8 +37,8 @@ public class MancalaGame
     }
 
     /// <summary>
-    /// Get user input for pit selection. Will keep asking until valid input is given.
-    /// Returns 0 if user wishes to exit.
+    ///     Get user input for pit selection. Will keep asking until valid input is given.
+    ///     Returns 0 if user wishes to exit.
     /// </summary>
     /// <returns> user pit selection, or 0 for exit</returns>
     private int GetUserPitRequest()
@@ -49,7 +48,7 @@ public class MancalaGame
             Console.Write($"{_currentTurn} Enter which pit to move stones from (1-6), or 0 to quit: ");
             var input = Console.ReadLine();
 
-            if (!int.TryParse(input, out int result))
+            if (!int.TryParse(input, out var result))
             {
                 Console.WriteLine("That was not a valid integer. Try again!");
                 continue;
@@ -67,7 +66,7 @@ public class MancalaGame
     }
 
     /// <summary>
-    /// Makes a move on the board for the current player, given the selected start pit (for that player)
+    ///     Makes a move on the board for the current player, given the selected start pit (for that player)
     /// </summary>
     /// <param name="selectedPit">integer pit # from 1-6</param>
     /// <returns>MoveResult --> Whether player should get extra turn, whether game is over</returns>
@@ -76,12 +75,12 @@ public class MancalaGame
         var pitId = PitSelect.Get(_currentTurn, selectedPit);
         var pit = Board.GetPit(pitId);
 
-        MancalaBucket endBucket = pit.Distribute(_currentTurn);
-        
-        // How do we know if player gets an extra turn?
-        bool extraTurn = endBucket is MancalaStore && endBucket.Owner == _currentTurn;
+        var endBucket = pit.Distribute(_currentTurn);
 
-        MoveResult moveResult = new MoveResult(){ExtraTurn = extraTurn, GameOver = false};
+        // How do we know if player gets an extra turn?
+        var extraTurn = endBucket is MancalaStore && endBucket.Owner == _currentTurn;
+
+        var moveResult = new MoveResult { ExtraTurn = extraTurn, GameOver = false };
 
         return moveResult;
     }
@@ -94,8 +93,6 @@ public class MancalaGame
 
 public struct MoveResult
 {
-    public required  bool ExtraTurn { get; init; }
-    public required bool GameOver { get; init; }   
+    public required bool ExtraTurn { get; init; }
+    public required bool GameOver { get; init; }
 }
-
-
